@@ -3,16 +3,17 @@ const express = require("express");
 const mongoose = require("mongoose");
 const users = require("./routers/users");
 const auth = require("./routers/auth");
-const blogs = require("./routers/blogs");
+const journals = require("./routers/journals");
 const app = express();
+const cors = require("cors");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 
 app.use(express.json());
-
+app.use(cors());
 app.use("/api/users", users);
 app.use("/api/auth", auth);
-app.use("/api/blogs", blogs);
+app.use("/api/journals", journals);
 if (!config.get("jwtPrivateToken")) {
   console.log("FATAL ERROR : Secret Token not provided");
   process.exit(1);

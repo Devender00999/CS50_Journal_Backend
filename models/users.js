@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 const jsonwebtoken = require("jsonwebtoken");
 const config = require("config");
-const { blogSchema } = require("./blogs");
+const { journalSchema } = require("./journals");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     min: 8,
     max: 32,
   },
-  blogs: [blogSchema],
+  journals: [journalSchema],
 });
 userSchema.methods.generateToken = function () {
   const token = jsonwebtoken.sign(

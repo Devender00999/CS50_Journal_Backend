@@ -11,7 +11,9 @@ router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error["details"][0]["message"]);
   let user = await User.findOne({ email: req.body.email });
+  console.log(user, "before printing");
   if (user) {
+    console.log(user, "ruser already registed");
     return res.status(400).send("User already Registered.");
   }
   user = new User(_.pick(req.body, ["name", "email", "password"]));
@@ -20,7 +22,7 @@ router.post("/", async (req, res) => {
   await user.save();
   const token = user.generateToken();
   res.header("x-auth-token", token);
-  return res.send(_.pick(user, ["_id", "name", "email"]));
+  return res.send(token);
 });
 
 // Router for single user
