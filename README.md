@@ -1,8 +1,4 @@
----
-
-## CS50 Journal
-
----
+# CS50 Journal
 
 What do Albert Einstein, Marie Curie, Frida Kahlo, Leonardo da Vinci, and Frederick Douglass all have in common? Each of these famous figures kept a journal or diary to record their experiences, thoughts, or feelings.
 Kahlo and da Vinci even used illustrations to express emotions and sketch out ideas.
