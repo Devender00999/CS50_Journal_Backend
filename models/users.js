@@ -4,6 +4,7 @@ const jsonwebtoken = require("jsonwebtoken");
 const config = require("config");
 const { journalSchema } = require("./journals");
 
+// user schema to store user details
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -26,6 +27,8 @@ const userSchema = new mongoose.Schema({
   },
   journals: [journalSchema],
 });
+
+// attaching a method to generate token
 userSchema.methods.generateToken = function () {
   const token = jsonwebtoken.sign(
     { _id: this._id, name: this.name, email: this.email },
@@ -33,9 +36,9 @@ userSchema.methods.generateToken = function () {
   );
   return token;
 };
-
 const User = new mongoose.model("User", userSchema);
 
+// validating user object to match the shcema
 function validateUser(user) {
   const schema = Joi.object({
     name: Joi.string().required().min(3).max(50),

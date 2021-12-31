@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
+// journal schema to store a journal with title, subtitle and content
 const journalSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -17,8 +18,10 @@ const journalSchema = new mongoose.Schema({
   },
 });
 
+// Journal model
 const Journal = new mongoose.model("Journal", journalSchema);
 
+// validating journal object to match with schema
 function validateJournal(journal) {
   const schema = Joi.object({
     title: Joi.string().required().min(5).max(50).only(),
@@ -28,6 +31,7 @@ function validateJournal(journal) {
   return schema.validate(journal);
 }
 
+// exporting all required files
 exports.Journal = Journal;
 exports.validate = validateJournal;
 exports.journalSchema = journalSchema;
