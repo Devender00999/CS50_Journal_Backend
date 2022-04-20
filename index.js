@@ -1,3 +1,5 @@
+/** @format */
+
 const config = require("config");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -19,6 +21,10 @@ if (!config.get("jwtPrivateToken")) {
   console.log("FATAL ERROR : Secret Token not provided");
   process.exit(1);
 }
+const url = `mongodb+srv://${config.get("DB_USERNAME")}:${config.get(
+  "DB_PASSWORD"
+)}@cluster0.gqpy9.mongodb.net/ecommercedb?retryWrites=true&w=majority`;
+
 mongoose.connect("mongodb://localhost:27017/cs50JournalDB", (err) => {
   if (err) {
     console.log("database not connected");

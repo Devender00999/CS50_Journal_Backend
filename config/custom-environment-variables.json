@@ -1,3 +1,5 @@
 {
-  "jwtPrivateToken": "cs50SecretKey"
+  "jwtPrivateToken": "cs50SecretKey",
+  "DB_USERNAME": "",
+  "DB_PASSWORD": ""
 }
